@@ -17,12 +17,36 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_family);
+        setContentView(R.layout.word_list);
+
+        // Create an ArrayList which will hold our list of words
+        ArrayList<Word> words = new ArrayList<>();
+        words.add(new Word("әpә","Father"));
+        words.add(new Word("әṭa","Mother"));
+        words.add(new Word("Angsi","Son"));
+        words.add(new Word("Daughter","Tune"));
+        words.add(new Word("Taachi","Older Brother"));
+        words.add(new Word("Chalitti","younger brother"));
+        words.add(new Word("Teṭe","Older Sister"));
+        words.add(new Word("Kolliti","Younger Sister"));
+        words.add(new Word("Ama","Grandmother"));
+        words.add(new Word("Paapa","Grandfather"));
+
+        // Create an ArrayAdapter to show only elements of a list that fit screen
+        WordAdapter mArrayAdapter = new WordAdapter(this, words);
+        // find the list layoutView in word_list xml file by id casting it and assign it to
+        // the ListView object that we create it mListView
+        ListView mListView = (ListView) findViewById(R.id.list);
+        // set Adapter to mListView and pass in it tha ArrayAdapter that we have created
+        mListView.setAdapter(mArrayAdapter);
     }
 }
